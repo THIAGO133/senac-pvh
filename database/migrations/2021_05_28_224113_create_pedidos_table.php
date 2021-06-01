@@ -17,9 +17,9 @@ class CreatePedidosTable extends Migration
             $table->id();
             $table->string('user')->nullable();
             $table->unsignedBigInteger('cliente_id');
-            $table->foreign('cliente_id')->references('id')->on('clientes')->onUpdate('cascade');
+            $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->unsignedBigInteger('servico_id');
-            $table->foreign('servico_id')->references('id')->on('servicos')->onUpdate('cascade');
+            $table->foreign('servico_id')->references('id')->on('servicos');
             $table->decimal('valor')->nullable();
             $table->text('obs')->nullable();
             $table->timestamps();
