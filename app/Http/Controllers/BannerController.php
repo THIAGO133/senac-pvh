@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BannerController extends Controller
 {
@@ -38,6 +39,7 @@ class BannerController extends Controller
         $banner = new Banner;
 
         $banner->titulo = $request->input('titulo');
+        $banner->image = $request->input('usuario');
 
         $banner->save();
 
