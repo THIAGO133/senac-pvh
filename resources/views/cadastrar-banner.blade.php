@@ -12,19 +12,19 @@
                    <h1>Cadastrar Banner</h1>
                 </div>
                 <hr>
-                <form method="POST" action="{{ route('store-banner') }}">
+                <form method="POST" action="{{ route('store-banner') }}" enctype="multipart/form-data">
                     @csrf
                     <!-- Name -->
                     <div>
                         <label for="titulo">Título</label>
 
-                        <x-input id="titulo" class="block mt-1 w-full" type="text" name="titulo" :value="old('titulo')" required autofocus />
+                        <x-input id="titulo" class="block mt-1 w-full" type="text" name="nome" :value="old('nome')"  autofocus />
                     </div>
 
                     <div>
                         <label for="imagem">Imagem</label>
 
-                        <x-input id="image" class="block mt-1 w-full" type="text" name="image" :value="old('image')" required autofocus />
+                        <x-input id="imagem" class="block mt-1 w-full" type="file" name="imagem" :value="old('imagem')"  autofocus />
                     </div>
 
 

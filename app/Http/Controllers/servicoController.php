@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\Banner;
+use App\Models\Servico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
-
 
 class BannerController extends Controller
 {
@@ -19,9 +18,8 @@ class BannerController extends Controller
     public function index()
     {
         //
-        $url     = Storage::url('banners');
-        $banners = Banner::all();
-        return view('listar-banner', compact('banners','url'));
+        $servicos = Servico::all();
+        return view('listar-servico', compact('servicos'));
     }
 
     /**
@@ -32,7 +30,6 @@ class BannerController extends Controller
     public function create()
     {
         //
-        return view('cadastrar-banner');
     }
 
     /**
@@ -43,42 +40,20 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $fileimag_principal       = $request->file('imagem');
-        $img_file                 = $fileimag_principal->getClientOriginalName();
+        //
+        $servico = new Servico;
 
-        if ($request->hasFile('imagem')) {
-            if (Storage::disk('public')->exists('banners/'.$img_file)) {
+        $user                        =Auth::user()->name;
 
-                $request->session()->flash('message','Esse arquivo de imagemjá foi cadastrado!');
-                return view('cadastrar-banner');
-            
-            } 
-        }
-        
-            // Insere esta imagem dentro da pasta do Storage e verifica se é uma imagem valida
+        $servico->user_error         =$user;
+        $servico->nome_servico       =$request->input('nome_servoco');
+        $servico->descricao          =$request->input('descricao');
+        $servico->image             =$request->input('image');
 
-                if ($request->file('imagem')->isValid()) {
-                
-                    $fileimag_principal      = request('imagem');
-                    $img_file                = $fileimag_principal->getClientOriginalName();
-                    $request->file('imagem')->storeAs('public/banners', $img_file);
-             }
+        $servico->save();
 
-        
-
-        $banner = new Banner;
-
-        $user                       = Auth::user()->name;
-
-        $banner->user               = $user;
-        $banner->nome               = $request->input('nome');
-        $banner->imagem             = $img_file;
-
-        $banner->save();
-
-        $request->session()->flash('message','Banner Inserido com sucesso');
-        return Redirect::to('/listar-banner');
+        $request->session()->flash('message','Servico Inserido com sucesso');
+        return Redirect::to('/listar-servico');
 
     }
 

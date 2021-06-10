@@ -13,16 +13,37 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Início') }}
                     </x-nav-link>
                 </div>
 
-                <!-- Navigation Links -->
+                {{-- BEGIN Meus Menus --}}
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"> --}}
+                    {{-- <x-nav-link :href="route('cadastrar-cliente')" :active="request()->routeIs('cadastrar-cliente')"> --}}
+                        {{-- {{ __('Cadastrar Banner') }} --}}
+                    {{-- </x-nav-link> --}}
+                {{-- </div> --}}
+
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"> --}}
+                    {{-- <x-nav-link :href="route('cadastrar-cliente')" :active="request()->routeIs('cadastrar-cliente')"> --}}
+                        {{-- {{ __('listar Banner') }} --}}
+                    {{-- </x-nav-link> --}}
+                {{-- </div> --}}
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('cadastrar-banner')" :active="request()->routeIs('cadastrar-banner')">
-                        {{ __('Cadastrar Banner') }}
+                    <x-nav-link :href="route('cadastrar-cliente')" :active="request()->routeIs('cadastrar-cliente')">
+                        {{ __('Cadastrar Cliente') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('listar-cliente')" :active="request()->routeIs('cadastrar-cliente')">
+                        {{ __('Listar Cliente') }}
+                    </x-nav-link>
+                </div>
+                {{-- END Meus Menus --}}
+
+
             </div>
 
             <!-- Settings Dropdown -->
